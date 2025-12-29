@@ -1,45 +1,61 @@
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import { Separator } from "@/components/ui/separator";
+
 export default function FilterSidebar() {
   return (
-    <div className="w-64 bg-white p-5 rounded-xl border">
-      <h2 className="font-semibold mb-4">Filters</h2>
+    <aside className="w-72 border rounded-xl p-5 space-y-6">
 
-      <button className="w-full border rounded-md py-2 mb-4">
-        Clear All
-      </button>
-
-      <div className="mb-6">
-        <h3 className="font-medium mb-2">Categories</h3>
-        {["Electronics", "Jewelery", "Men's Clothing", "Women's Clothing"].map(
-          (cat) => (
-            <label key={cat} className="flex items-center gap-2 mb-2">
-              <input type="checkbox" />
-              <span>{cat}</span>
-            </label>
-          )
-        )}
+      <div className="flex justify-between items-center">
+        <h2 className="font-semibold text-lg">Filters</h2>
+        <Button variant="outline" size="sm">
+          Clear All
+        </Button>
       </div>
 
-      <div className="mb-6">
-        <h3 className="font-medium mb-2">Price Range</h3>
-        <input type="range" className="w-full" />
-        <div className="flex justify-between text-sm mt-1">
+      <Separator /> 
+
+      <div>
+        <h3 className="font-medium mb-3">Categories</h3>
+        <div className="space-y-2">
+          {["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"].map(
+            (item) => (
+              <div key={item} className="flex items-center gap-2">
+                <Checkbox />
+                <span className="text-sm">{item}</span>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+
+      <Separator />
+
+      <div>
+        <h3 className="font-medium mb-3">Price Range</h3>
+        <Slider defaultValue={[500]} max={1000} step={50} />
+        <div className="flex justify-between text-sm mt-2">
           <span>$0</span>
           <span>$1000</span>
         </div>
-        <button className="mt-3 w-full border rounded-md py-2">
+
+        <Button className="w-full mt-3" variant="outline">
           Apply Price Filter
-        </button>
+        </Button>
       </div>
 
+      <Separator />
+
       <div>
-        <h3 className="font-medium mb-2">Minimum Rating</h3>
-        {[4, 3, 2, 1].map((rate) => (
-          <label key={rate} className="flex items-center gap-2 mb-2">
-            <input type="checkbox" />
-            <span>{rate}+ Stars</span>
-          </label>
+        <h3 className="font-medium mb-3">Minimum Rating</h3>
+        {[4, 3, 2, 1].map((star) => (
+          <div key={star} className="flex items-center gap-2 mb-2">
+            <Checkbox />
+            <span className="text-sm">{star}+ Stars</span>
+          </div>
         ))}
       </div>
-    </div>
-  )
+    </aside>
+  );
 }
