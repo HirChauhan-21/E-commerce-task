@@ -1,9 +1,8 @@
-import React from 'react'
+import Store from "./pages/store"
 
-const App = () => {
-  return (
-    <div>App</div>
-  )
+
+function App() {
+  return <Store />
 }
 
 export default App
